@@ -20,7 +20,6 @@ order by MovieTypeCount DESC
 
 
 -- Movie age_certification
-
 /*
 Because there are blank space in age_certification column, we need to replace it to 'Unrated'
 */
@@ -40,12 +39,12 @@ Order by CertCount DESC
 /* 
 Unrated	: Doesnt have certification
 TV-MA	:
-R		:
+R	:
 TV-14	:
 PG-13	:
-PG		:
+PG	:
 TV-PG	:
-G		:
+G	:
 TV-Y7	:
 TV-Y	:
 TV-G	:
@@ -101,9 +100,11 @@ Where Movie_genre = ' '
 
 /* Checking if there is a dupicated value */
 With CTE
-as (
+as 
+(
 Select *, ROW_NUMBER() Over (Partition By id, Movie_genre Order By id, Movie_Genre) row_num
-From MovieGenre)
+From MovieGenre
+)
 
 Select * From CTE
 Where row_num > 1
@@ -187,7 +188,7 @@ Order By YearCount Desc
 
 
 
-select * From MovieTitle
+
 
 -- Average IMD Score Per Genre
 With CTE
